@@ -1,4 +1,4 @@
-For my final group project at Prime Digital Academy, I was on a team that made this app for Twin Cities PBS. Took the role of front-end designer and also tackled some client-side logic.<br>
+For my final group project at Prime Digital Academy, I was on a team that made this app for Twin Cities PBS. I took the role of front-end designer and also tackled some client-side logic.<br>
 
 The project, which was completed over 3 weeks, allows employees to schedule meeting rooms on-the-fly, rather than make the trek back to their desks to properly sign up with Microsoft Outlook. It was meant as a proof-of-concept for TPT, so it was demonstrated with Google Calendar. For actual implementation, their team is altering the code to work with Outlook.
 
@@ -8,6 +8,7 @@ There is one big caveat to playing around with this app. Sometimes it reqires a 
 
 Technologies I employed for my part of this project:<br>
   • HTML/CSS <br>
+  • Bootstrap <br>
   • Javascript<br>
   
 The primary lessons of this assignment were: <br>
