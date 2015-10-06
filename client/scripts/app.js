@@ -288,7 +288,7 @@ function autoRefresh(minutes, seconds) {
     setTimeout(function() { window.location.reload(true); }, timeout);
 }
 
-////////// Document Ready //////////
+///////// Document Ready //////////
 $(document).ready(function(){
     buttonTime();
     ajaxCall();
