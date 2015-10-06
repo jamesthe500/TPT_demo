@@ -1,7 +1,7 @@
 ////////// variables //////////
 var currentTime = new Date();
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
-var monthNum = currentTime.getMonth()+1;
+var monthNum = currentTime.getMonth() + 1;
 var minutes = currentTime.getMinutes();
 var thirtyTime;
 var sixtyTime;
@@ -15,6 +15,13 @@ var milSixtyTime;
 
 
 ////////// functions //////////
+
+// function to rewrite months 1 - 9 with a 0 in front.
+function monthFormat() {
+    if (monthNum < 10) {
+        monthNum = "0" + monthNum;
+    }
+}
 
 // function to calculate reservation end time based on rounded time on click
 function buttonTime() {
@@ -303,13 +310,14 @@ $(document).ready(function(){
 
     //functionality when the button for the 30 minute meeting reservation
     $('#rooms').on('click', ".thirty", function(){
+        monthFormat();
         var btn=$(this);
         var postLocation = $(this).attr("id");
         postThirtyEvent = {
             summary: 'squatter@tpt.org',
             location: postLocation,
-            start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
-            end: currentTime.getFullYear() + '-0'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-05:00'
+            start: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
+            end: currentTime.getFullYear() + '-'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-05:00'
         };
         bookRoomThirty(btn);
         var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
@@ -317,13 +325,14 @@ $(document).ready(function(){
     });
     //functionality when the button for the 60 minute meeting reservation
     $('#rooms').on('click', ".sixty", function(){
+        monthFormat();
         var btn=$(this);
         var postLocation = $(this).attr("id");
         postSixtyEvent = {
             summary: 'squatter@tpt.org',
             location: postLocation,
-            start: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
-            end: currentTime.getFullYear() + '-0'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-05:00'
+            start: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
+            end: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-05:00'
         };
         bookRoomSixty(btn);
         var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
