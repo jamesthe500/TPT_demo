@@ -60,6 +60,8 @@ router.post('/', function(req,res,next){
 router.get('/', function(req, res) {
     console.log(req.params[0]);
 
+    // note: this is flawed as it will not work near the end of the day due to confusion with
+    // timezones. Thus, this app only works for people in US Central Time, before 5 or 6pm.
     var today = moment().format('YYYY-MM-DD') + 'T';
 
     calendar.events.list({

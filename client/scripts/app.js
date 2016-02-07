@@ -114,7 +114,7 @@ function ajaxCall(){
         url: '/events',
         success: function(response){
             eventData = response.items;
-
+            console.log(response);
             roomLoop();
             appendInfo();
             return eventData;
@@ -128,6 +128,7 @@ function ajaxCall(){
 
 //time comparison statements when checking for 30 minute meeting availability -will flip flag to false if conflict exists
 function data30Loop(i){
+
     reserveThirtyTime = currentTime.getDate() + " " + monthNames[currentTime.getMonth()] + " " + currentTime.getFullYear() + " " + milThirtyTime + ":00";
     for(var j = 0; j < eventData.length; j++) {
 
@@ -308,6 +309,9 @@ $(document).ready(function(){
     autoRefresh(30,0);
     autoRefresh(45,0);
 
+    //var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+    var overlay = $("<div style='width:" + screen.width + "px; height: " + screen.height + "px; top: 0; left: 0; z-index: 100; position: fixed; background: lightgray; opacity: 0.5; padding-top: 25%;'></div>");
+
     //functionality when the button for the 30 minute meeting reservation
     $('#rooms').on('click', ".thirty", function(){
         monthFormat();
@@ -316,11 +320,11 @@ $(document).ready(function(){
         postThirtyEvent = {
             summary: 'squatter@tpt.org',
             location: postLocation,
-            start: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
-            end: currentTime.getFullYear() + '-'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-05:00'
+            start: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-0' + currentTime.getTimezoneOffset() / 60 + ':00',
+            end: currentTime.getFullYear() + '-'+monthNum+'-'+currentTime.getDate()+'T'+milThirtyTime+':00'+'-0' + currentTime.getTimezoneOffset() / 60 + ':00'
         };
         bookRoomThirty(btn);
-        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+        $('html, body').css({'overflow': 'hidden'});
         $("body").append(overlay);
     });
     //functionality when the button for the 60 minute meeting reservation
@@ -331,19 +335,19 @@ $(document).ready(function(){
         postSixtyEvent = {
             summary: 'squatter@tpt.org',
             location: postLocation,
-            start: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-05:00',
-            end: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-05:00'
+            start: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+currentTime.getHours()+':'+currentTime.getMinutes()+':00'+'-0' + currentTime.getTimezoneOffset() / 60 + ':00',
+            end: currentTime.getFullYear() + '-'+monthNum+ '-'+currentTime.getDate()+'T'+milSixtyTime+':00'+'-0' + currentTime.getTimezoneOffset() / 60 + ':00'
         };
         bookRoomSixty(btn);
-        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
+        $('html, body').css({'overflow': 'hidden'});
         $("body").append(overlay);
 
     });
 
 //// allows testing of the error popup without having to create a true conflict ///////
     $('#rooms').on('click', ".computerStatusIcon", function(){
-        var overlay = $("<div style='width:10000px; height: 9999px; margin-left: -5000px; top: 0; z-index: 100; position: absolute; background: lightgray; opacity: 0.5; text-align: center; font-size: large; padding-top: 25%; font-weight: bold;'></div>");
         $("body").append(overlay);
+        $('html, body').css({'overflow': 'hidden'});
         errorAlert($(this));
 
     });
